@@ -1,0 +1,25 @@
+# JWT
+jwt:
+  secret: localtest
+  header: Authorization
+
+  # Spring datasource
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/test_icommerce
+  flyway:
+    user: root
+    password: root
+    url: jdbc:mysql://localhost:3306/icommerce_no_data
+    baseline-on-migrate: true
+    init-sqls:
+      DROP DATABASE IF EXISTS test_icommerce;
+      CREATE DATABASE IF NOT EXISTS test_icommerce CHARACTER SET utf8 COLLATE utf8_general_ci;
+      USE test_icommerce;

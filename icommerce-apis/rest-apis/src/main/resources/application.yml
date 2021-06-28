@@ -1,0 +1,35 @@
+# JWT
+jwt:
+  secret: ${JWT_SECRET:localtest}
+  header: Authorization
+
+logging:
+  level:
+    org.springframework.orm.jpa: DEBUG
+    org.springframework.transaction: DEBUG
+
+# Spring datasource
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        properties:
+          provider_disables_autocommit: true
+  datasource:
+    username: ${DATABASE_USER_NAME:root}
+    password: ${DATABASE_USER_PASSWORD:root}
+    url: jdbc:mysql://${DATABASE_NAME:localhost}:3306/pro_icommerce
+    hikari:
+      maximum-pool-size: ${DATABASE_MAX_POOL_SIZE:15}
+      connection-timeout: ${DATABASE_CONNECTION_TIMEOUT_MILLISECOND:10000}
+      auto-commit: false
+    tomcat:
+      default-auto-commit: false
+  flyway:
+    user: ${DATABASE_USER_NAME:root}
+    password: ${DATABASE_USER_PASSWORD:root}
+    url: jdbc:mysql://${DATABASE_NAME:localhost}:3306/icommerce_no_data
+    baseline-on-migrate: true
+    init-sqls: CREATE DATABASE IF NOT EXISTS pro_icommerce CHARACTER SET utf8 COLLATE utf8_general_ci; USE pro_icommerce;
